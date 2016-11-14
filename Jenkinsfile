@@ -1,2 +1,2 @@
 echo 'hello there Ewan'
-echo 'push test'
+echo 'push test2'
