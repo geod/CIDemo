@@ -12,6 +12,7 @@ class SimpleTest(unittest.TestCase):
     def test_skipped(self):
         self.fail("shouldn't happen")
 
+
     def test_pass(self):
         wac = WrapAroundCounter(10)
 
