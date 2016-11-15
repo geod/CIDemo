@@ -19,7 +19,7 @@ class SimpleIntegrationTest(unittest.TestCase):
 
 
     def test_malformed(self):
-        url = 'http://localhost:5000/counter/foobar'
+        url = 'http://localhost:5000/counter/foobars'
         res = requests.get(url)
         self.assertEqual(res.status_code, 500)
 
