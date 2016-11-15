@@ -3,7 +3,7 @@
 class WrapAroundCounter:
 
     def __init__(self, max):
-        self.max = max
+        self.maximum = maximum
 
     def increment(self, n):
         """
@@ -12,7 +12,7 @@ class WrapAroundCounter:
         :param n:
         :return:
         """
-        if n == max:
+        if n == maximum:
             n = 1
         else:
             n += 1
