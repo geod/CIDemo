@@ -1,6 +1,5 @@
 node {
     //semi-nasty hack
-   def PYTHON_PATH = "/Library/Frameworks/Python.framework/Versions/2.7/"
 
    stage('Preparation') {
         echo 'Nuke the environment'
@@ -12,7 +11,7 @@ node {
    stage('Install Reqs'){
         def workspace = pwd()
         echo "ws:$workspace"
-        sh "$PYTHON_PATH/bin/pip install -r requirements.txt"
+        sh "pip install -r requirements.txt"
    }
    stage('BuildAndPackage'){
        echo 'Nothing to do for python!'
@@ -22,13 +21,24 @@ node {
     //sh "python --version"
     def workspace = pwd()
     echo "ws:$workspace"
-    sh "cd $workspace; $PYTHON_PATH/bin/pytest unittests.py --junitxml=unittestsout.xml" // || true
+    sh "cd $workspace; pytest unittests.py --junitxml=unittestsout.xml" // || true
     junit 'unittestsout.xml'
    }
 
    stage ('Integration Tests'){
        echo 'Weeeeee'
-       sh "cd $workspace; $PYTHON_PATH/bin/pytest integrationtests.py --junitxml=integrationtestsout.xml" // || true
+
+       //make web server not running then start
+       sh "ps -ef | grep WAC_JENKINS_IT | grep -v grep | cut -d' ' -f4 | xargs --no-run-if-empty kill"
+       sh "cd $workspace; python webserver.py --WAC_JENKINS_IT &"
+
+       sleep 3
+
+       //run integration tests
+       sh "cd $workspace; pytest integrationtests.py --junitxml=integrationtestsout.xml" // || true
        junit 'integrationtestsout.xml'
+
+       //kill web server
+       sh "ps -ef | grep WAC_JENKINS_IT | grep -v grep | cut -d' ' -f4 | xargs --no-run-if-empty kill"
    }
 }
