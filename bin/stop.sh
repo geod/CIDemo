@@ -1,1 +1,0 @@
-ps -ef | grep WAC_JENKINS_IT | grep -v grep | cut -d' ' -f4 | xargs kill
