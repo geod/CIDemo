@@ -15,7 +15,8 @@ class SimpleIntegrationTest(unittest.TestCase):
         url = 'http://localhost:5000/counter/10'
         res = requests.get(url)
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(res.text, '{\n  \"incremented\": 1\n}')
+        jsnres = json.loads(res.text)
+        self.assertEqual(jsnres['incremented'], 1)
 
 
     def test_malformed(self):
