@@ -10,7 +10,7 @@ wac = WrapAroundCounter(10)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello, World!!'
 
 
 @app.route('/counter/<argument>')
