@@ -12,7 +12,7 @@ class WrapAroundCounter:
         :param n:
         :return 1..9 then n+1 else 1 :
         """
-        if n == self.max:
+        if n == max:
             n = 1
         else:
             n += 1
