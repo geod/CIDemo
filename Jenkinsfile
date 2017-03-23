@@ -21,7 +21,7 @@ node {
     //sh "python --version"
     def workspace = pwd()
     echo "ws:$workspace"
-    sh "cd $workspace; pytest unittests.py --junitxml=unittestsout.xml" // || true
+    sh "cd $workspace/wac; pytest unittests.py --junitxml=unittestsout.xml" // || true
     junit 'unittestsout.xml'
    }
 
@@ -35,7 +35,7 @@ node {
        sleep 3
 
        //run integration tests
-       sh "cd $workspace; pytest integrationtests.py --junitxml=integrationtestsout.xml" // || true
+       sh "cd $workspace/wac; pytest integrationtests.py --junitxml=integrationtestsout.xml" // || true
        junit 'integrationtestsout.xml'
 
        //kill web server
