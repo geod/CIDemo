@@ -1,9 +1,8 @@
 
-
 class WrapAroundCounter:
 
     def __init__(self, maximum):
-        self.max = maximum
+        self.maximum = maximum
 
     def increment(self, n):
         """
@@ -12,8 +11,11 @@ class WrapAroundCounter:
         :param n:
         :return 1..9 then n+1 else 1 :
         """
-        if n == max:
+        if n < 1 or n > self.maximum:
+            raise ValueError('character not found')
+        if n == self.maximum:
             n = 1
         else:
             n += 1
         return n
+

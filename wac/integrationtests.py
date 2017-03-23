@@ -24,4 +24,6 @@ class SimpleIntegrationTest(unittest.TestCase):
         res = requests.get(url)
         self.assertEqual(res.status_code, 500)
 
+if __name__ == '__main__':
+    unittest.main()
 
