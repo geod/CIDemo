@@ -15,8 +15,7 @@ def hello_world():
 
 @app.route('/counter/<argument>')
 def counter(argument):
-    #incremented = wac.increment(int(argument))
-    incremented = wac.increment(argument)
+    incremented = wac.increment(int(argument))
     return flask.jsonify({'incremented' : incremented})
 
 if __name__ == "__main__":
